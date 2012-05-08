@@ -1,0 +1,59 @@
+* Você pode testar sua aplicação web através do comando:
+
+	mvn clean package jetty:run
+	
+	LEMBRE-SE: quando a aplicação iniciar, o banco de dados não conterá estrutura alguma. Você deve executar o servlet de instalação do banco de dados. 
+	A tarefa dele é criar as tabelas para você. Para executar, acesse:
+	
+	http://localhost:8080/instalar-banco
+	
+	Você pode consultar esse servlet (labs.fourpizza.cozinha.PopularBancoServlet) como exemplo para suas tarefas.
+	
+
+Para verificar se todos os testes estão passando, digite no prompt de comando:
+
+	mvn clean package verify 
+	
+----------------------------------------------------------------------------------------------------
+Especificacação da aplicação "fourpizza-web-3"
+----------------------------------------------------------------------------------------------------
+
+Tarefa 1:  Implementar a classe labs.fourpizza.cozinha.Recheio, que representa um recheio que pode ser utilizado na pizza.
+
+Um recheio tem alguns requisitos como:
+	* Não pode conter menos que 1 ingrediente e mais que 7 ingredientes.
+	* A descrição do recheio deve listar os ingredientes utilizados nele.
+	* Não pode haver dois recheios com o mesmo nome.
+	* Dois recheios são iguais se possuem o mesmo nome.
+
+Classe de Teste: labs.fourpizza.cozinha.dominio.RecheioTest
+
+--------------------------------------------------------------------------------------------------------------
+
+Tarefa 2: Implementar a classe DAO para gerenciar os recheios no banco de dados.
+
+Da mesma forma que na tarefa 2, é necessário finalizar a implementação do JdbcRecheiosDao, 
+que fará as consultas no banco de dados.
+
+Também deixamos os comandos SQL para você executá-los com JDBC. 
+
+Classe de Teste: labs.fourpizza.cozinha.dao.impl.JdbcIngredientesDaoIT
+
+---------------------------------------------------------------------------------------------
+
+Tarefa 3: Implementar o labs.fourpizza.cozinha.RecheiosServlet responsável por exibir os dados na página.
+
+Será necessário criar um servlet para exibir a lista de recheio e o formulario para adicionar novos recheios.
+Este servlet será mapeado através de anotações, como a especificação servlet 3.0 permite, com o nome de "/recheios".
+
+Terá dois métodos, um doGet e um doPost:
+
+	doGet -> responsável por listar, remover recheios da lista e exibir o formulário de novo recheio.
+	doPost -> processar dados do formulário quando um novo recheio for adicionado.
+
+Para listar os recheios, há uma tabela que exibe o nome, ingredientes, valor do recheio e um link para remover o recheio.
+
+O formulário para adicionar um novo recheio exibe todos os ingredientes na forma de checkbox. Assim o usuário pode
+escolher com facilidade os ingredientes do recheio. Além disso possui um campo para adicionar um nome ao.
+
+Classe de Teste: labs.fourpizza.cozinha.RecheiosServletIT
