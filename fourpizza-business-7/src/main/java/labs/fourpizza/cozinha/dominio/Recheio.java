@@ -111,6 +111,10 @@ public class Recheio implements Serializable {
 
 	public void setIngredientes(List<Ingrediente> ingredientes)
 			throws MontagemException {
+		if(ingredientes == null || ingredientes.isEmpty()) {
+			throw new MontagemException("Deve haver pelo menos um "
+					+ "ingrediente.");
+		}
 		this.ingredientes = ingredientes;
 	}
 
